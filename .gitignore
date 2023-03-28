@@ -1,0 +1,11 @@
+# Ignore everything
+assets/*
+config/*
+layout/*
+locales/*
+sections/*
+snippets/*
+templates/*
+
+# But not these files...
+!sections/promote-products.liquid
