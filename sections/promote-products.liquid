@@ -1,5 +1,31 @@
 <div class="promote-products--inner page-width">
   <h2 class="promote-products--heading">Promote products</h2>
+
+  <ul>
+    {% for product in collections['all'].products limit: 4 %}
+      {%- liquid
+        assign priceRaw = product.price | default: 1999
+        assign priceMoney = priceRaw | money
+        if settings.currency_code_enabled
+          assign priceMoney = priceRaw | money_with_currency
+        endif
+      -%}
+      <li class="promote-products--product-card">
+        <div class="promote-product--product-media">
+          {{ product.featured_media | image_url: width: 210 | image_tag }}
+        </div>
+        <h3 class="promote-products--product-title">
+          <a href="{{ product.url }}">{{ product.title | escape }}</a>
+        </h3>
+        <div class="promote-products--product-price--container">
+          <p class="promote-products--product-price--regular">
+            <span class="promote-products--product-price--value">{{ priceMoney }}</span>
+          </p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
 </div>
 
 {% schema %}
