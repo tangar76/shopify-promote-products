@@ -8,5 +8,6 @@ snippets/*
 templates/*
 
 # But not these files...
+!assets/promote-products.css
 !sections/promote-products.liquid
 !snippets/promote-products__price.liquid

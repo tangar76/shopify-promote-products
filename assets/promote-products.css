@@ -1,0 +1,27 @@
+.promote-products--list {
+    --list-gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--list-gap);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.promote-products--item {
+    width: calc((100% - var(--list-gap) * 3) / 4);
+}
+
+.promote-product--product-media {
+    position: relative;
+    padding-bottom: var(--padding-bottom, 0);
+}
+
+.promote-product--product-media img {
+    object-fit: contain;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}

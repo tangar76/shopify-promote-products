@@ -1,11 +1,13 @@
+{{ 'promote-products.css' | asset_url | stylesheet_tag }}
+
 <div class="promote-products--inner page-width">
   <h2 class="promote-products--heading">Promote products</h2>
 
-  <ul>
+  <ul class="promote-products--list">
     {% for product in collections['all'].products limit: 4 %}
-      <li class="promote-products--product-card">
-        <div class="promote-product--product-media">
-          {{ product.featured_media | image_url: width: 210 | image_tag }}
+      <li class="promote-products--item">
+        <div class="promote-product--product-media" style="--padding-bottom: calc(100% / {{ product.featured_media.aspect_ratio }})">
+          {{ product.featured_media | image_url: width: 260 | image_tag }}
         </div>
         <h3 class="promote-products--product-title">
           <a href="{{ product.url }}">{{ product.title | escape }}</a>
