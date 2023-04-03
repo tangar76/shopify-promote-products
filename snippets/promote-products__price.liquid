@@ -1,0 +1,44 @@
+{% comment %}
+Render price for product
+
+Accepts:
+
+- product {Object}
+
+{% endcomment %}
+
+{%- liquid
+  assign priceRaw = product.price | default: 1999
+  assign comparePriceRaw = product.compare_at_price
+  assign priceMoney = priceRaw | money
+  assign comparePriceMoney = comparePriceRaw | money
+  if settings.currency_code_enabled
+    assign priceMoney = priceRaw | money_with_currency
+    assign comparePriceMoney = comparePriceRaw | money_with_currency
+  endif
+-%}
+
+<div class="promote-products__price-container">
+  <p class="promote-products__price{% if comparePriceRaw > priceRaw %} promote-products__price-sale{% else %} promote-products__price-regular{% endif %}">
+    <span class="promote-products__price-label">
+      {% if comparePriceRaw > priceRaw %}
+        {{ 'products.product.price.sale_price' | t }}
+      {% else %}
+        {{ 'products.product.price.regular_price' | t }}
+      {% endif %}
+    </span>
+    <span class="promote-products__price-value">
+      {{ priceMoney }}
+    </span>
+  </p>
+  {% if comparePriceRaw > priceRaw %}
+    <p class="promote-products__price promote-products__price-regular">
+      <s class="promote-products__price-label">
+        {{ 'products.product.price.regular_price' | t }}
+      </s>
+      <s class="promote-products__price-value">
+        {{ comparePriceMoney }}
+      </s>
+    </p>
+  {% endif %}
+</div>

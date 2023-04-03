@@ -9,3 +9,4 @@ templates/*
 
 # But not these files...
 !sections/promote-products.liquid
+!snippets/promote-products__price.liquid
