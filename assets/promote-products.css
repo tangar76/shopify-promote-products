@@ -1,27 +1,52 @@
 .promote-products--list {
-    --list-gap: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--list-gap);
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  --list-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--list-gap);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.promote-products--list {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .promote-products--item {
-    width: calc((100% - var(--list-gap) * 3) / 4);
+  min-width: var(--image-width);
+  overflow: auto;
+  width: calc((100% - var(--list-gap) * 3) / 4);
+}
+
+.promote-products--item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 .promote-product--product-media {
-    position: relative;
-    padding-bottom: var(--padding-bottom, 0);
+  position: relative;
+  padding-bottom: var(--padding-bottom, 0);
 }
 
 .promote-product--product-media img {
-    object-fit: contain;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
+  object-fit: contain;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+promote-products--slider {
+  display: block;
+}
+
+promote-products--slider button svg {
+  display: inline-block;
+  vertical-align: middle;
+  height: 24px;
+  width: 24px;
 }

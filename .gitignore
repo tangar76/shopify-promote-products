@@ -9,5 +9,6 @@ templates/*
 
 # But not these files...
 !assets/promote-products.css
+!assets/promote-products--slider.js
 !sections/promote-products.liquid
 !snippets/promote-products__price.liquid

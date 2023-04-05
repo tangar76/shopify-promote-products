@@ -1,21 +1,62 @@
 {{ 'promote-products.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'promote-products--slider.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign imgWidth = 260
+%}
+
+<style>
+  {{ section.id | prepend: '#shopify-section-' | append: ' .promote-products--list'}} {
+    --image-width: {{ imgWidth | append: 'px' }};
+}
+</style>
 
 <div class="promote-products--inner page-width">
   <h2 class="promote-products--heading">Promote products</h2>
 
-  <ul class="promote-products--list">
-    {% for product in collections['all'].products limit: 4 %}
-      <li class="promote-products--item">
-        <div class="promote-product--product-media" style="--padding-bottom: calc(100% / {{ product.featured_media.aspect_ratio }})">
-          {{ product.featured_media | image_url: width: 260 | image_tag }}
-        </div>
-        <h3 class="promote-products--product-title">
-          <a href="{{ product.url }}">{{ product.title | escape }}</a>
-        </h3>
-        {% render 'promote-products__price' product: product %}
-      </li>
-    {% endfor %}
-  </ul>
+  <promote-products--slider>
+    <ul class="promote-products--list">
+      {% for product in collections['all'].products limit: 4 %}
+        <li class="promote-products--item">
+          <div class="promote-product--product-media" style="--padding-bottom: calc(100% / {{ product.featured_media.aspect_ratio }})">
+            {{ product.featured_media | image_url: width: imgWidth | image_tag }}
+          </div>
+          <h3 class="promote-products--product-title">
+            <a href="{{ product.url }}">{{ product.title | escape }}</a>
+          </h3>
+          {% render 'promote-products__price' product: product %}
+        </li>
+      {% endfor %}
+    </ul>
+    <button
+      data-action="prev"
+      hidden
+      title="Previouse">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z"
+          clip-rule="evenodd" />
+      </svg>
+    </button>
+    <button
+      data-action="next"
+      hidden
+      title="Next">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+          clip-rule="evenodd" />
+      </svg>
+    </button>
+  </promote-products--slider>
 
 </div>
 
