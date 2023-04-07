@@ -8,13 +8,6 @@
   padding: 0;
 }
 
-.promote-products--list {
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-}
-
 .promote-products--item {
   min-width: var(--image-width);
   overflow: auto;
@@ -42,6 +35,27 @@
 
 promote-products--slider {
   display: block;
+  position: relative;
+}
+
+promote-products--slider .promote-products--list {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+promote-products--slider button {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: calc(-2rem - 24px);
+}
+
+promote-products--slider button[name=prev] {
+  right: calc(1rem + 24px);
 }
 
 promote-products--slider button svg {
@@ -49,4 +63,38 @@ promote-products--slider button svg {
   vertical-align: middle;
   height: 24px;
   width: 24px;
+}
+
+/* Scrollbar */
+
+promote-products--slider .promote-products--list {
+  scrollbar-color: rgb(var(--color-foreground)) rgba(var(--color-foreground), 0.04);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+promote-products--slider .promote-products--list::-webkit-scrollbar {
+  height: 0.4rem;
+  width: 0.4rem;
+  display: none;
+}
+
+.no-js promote-products--slider .promote-products--list  {
+  -ms-overflow-style: auto;
+  scrollbar-width: auto;
+}
+
+promote-products--slider .promote-products--list::-webkit-scrollbar {
+  display: initial;
+}
+
+promote-products--slider .promote-products--list::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--color-foreground));
+  border-radius: 0.4rem;
+  border: 0;
+}
+
+promote-products--slider .promote-products--list::-webkit-scrollbar-track {
+  background: rgba(var(--color-foreground), 0.04);
+  border-radius: 0.4rem;
 }
